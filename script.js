@@ -1,11 +1,11 @@
 // Step 1: Switch from Loading Screen → Choice Screen
-window.onload = function() {
+window.addEventListener("load", () => {
   setTimeout(() => {
-    document.getElementById("loading-screen").style.display = "none";
-    document.getElementById("choice-screen").style.display = "block";
-    document.getElementById("scroll-screen").style.display = "none";
+    document.getElementById("loading-screen").classList.add("hidden");
+    document.getElementById("choice-screen").classList.remove("hidden");
+    document.getElementById("scroll-screen").classList.add("hidden");
   }, 3000); // after 3 seconds
-};
+});
 
 // Step 2: Fortune messages
 const fortunes = {
@@ -28,19 +28,30 @@ const fortunes = {
 
 // Step 3: Function when a button is clicked
 function pickCategory(category) {
-  // Hide choice screen, show scroll
-  document.getElementById("choice-screen").style.display = "none";
-  document.getElementById("scroll-screen").style.display = "flex";
+  // Hide choice, show scroll
+  document.getElementById("choice-screen").classList.add("hidden");
+  document.getElementById("scroll-screen").classList.remove("hidden");
 
   // Pick random fortune
   let options = fortunes[category];
   let randomFortune = options[Math.floor(Math.random() * options.length)];
 
-  // Show it inside the scroll
-  document.getElementById("fortune-text").textContent = randomFortune;
+  // Show it with fade-in
+  let fortuneText = document.getElementById("fortune-text");
+  fortuneText.classList.add("opacity-0");
+  fortuneText.textContent = randomFortune;
+  setTimeout(() => {
+    fortuneText.classList.remove("opacity-0");
+  }, 100);
 }
 
-// Step 4: Connect buttons to function
+// Step 4: Connect buttons
 document.getElementById("love-btn").onclick = () => pickCategory("love");
 document.getElementById("career-btn").onclick = () => pickCategory("career");
 document.getElementById("health-btn").onclick = () => pickCategory("health");
+
+// Step 5: Back button to return to choice
+document.getElementById("back-btn").onclick = () => {
+  document.getElementById("scroll-screen").classList.add("hidden");
+  document.getElementById("choice-screen").classList.remove("hidden");
+};

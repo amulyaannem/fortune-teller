@@ -3,30 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <title>Fortune Teller</title>
-  <link rel="stylesheet" href="style.css">
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  
-  <!-- Loading Screen -->
-  <div id="loading-screen">
-    <div id="orb"></div>
-    <p>Loading your destiny...</p>
+<body class="min-h-screen bg-gradient-to-r from-purple-900 via-purple-700 to-pink-600 flex items-center justify-center font-serif">
+
+  <!-- 🔮 Loading Screen -->
+  <div id="loading-screen" class="flex flex-col items-center justify-center text-white text-2xl font-semibold space-y-6">
+    <div id="orb" class="w-24 h-24 rounded-full bg-gradient-to-br from-cyan-300 to-blue-800 shadow-2xl animate-ping"></div>
+    <p class="animate-pulse">Loading your destiny...</p>
   </div>
 
-  <!-- Choice Screen -->
-  <div id="choice-screen">
-    <h1>Choose your destiny</h1>
-    <button id="love-btn">Love 💖</button>
-    <button id="career-btn">Career 💼</button>
-    <button id="health-btn">Health 🍀</button>
-  </div>
-
-  <!-- Scroll Screen -->
-  <div id="scroll-screen">
-    <div id="scroll">
-      <p id="fortune-text">Your fortune will appear here...</p>
+  <!-- 💖 Choice Screen (hidden at start) -->
+  <div id="choice-screen" class="hidden flex flex-col items-center bg-white/90 shadow-2xl rounded-2xl p-10 space-y-8">
+    <h1 class="text-4xl font-bold text-purple-800 tracking-wide">Choose Your Destiny</h1>
+    <div class="flex flex-col sm:flex-row gap-4">
+      <button id="love-btn" class="px-6 py-3 bg-gradient-to-r from-pink-400 to-pink-600 text-white font-semibold rounded-full shadow-lg hover:scale-105 hover:shadow-xl transition">Love 💖</button>
+      <button id="career-btn" class="px-6 py-3 bg-gradient-to-r from-blue-400 to-blue-600 text-white font-semibold rounded-full shadow-lg hover:scale-105 hover:shadow-xl transition">Career 💼</button>
+      <button id="health-btn" class="px-6 py-3 bg-gradient-to-r from-green-400 to-green-600 text-white font-semibold rounded-full shadow-lg hover:scale-105 hover:shadow-xl transition">Health 🍀</button>
     </div>
   </div>
-<script src="script.js"></script>
+
+  <!-- 📜 Scroll Screen (hidden at start) -->
+  <div id="scroll-screen" class="hidden flex justify-center items-center mt-10">
+    <div id="scroll" class="bg-gradient-to-b from-yellow-100 to-yellow-200 border-4 border-yellow-700 rounded-xl shadow-xl p-8 w-96 text-center">
+      <p id="fortune-text" class="text-xl text-gray-800 italic opacity-0 transition-opacity duration-700">Your fortune will appear here...</p>
+      <button id="back-btn" class="mt-6 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition">🔙 Back</button>
+    </div>
+  </div>
+
+  <!-- ✅ Script at the end -->
+  <script src="script.js"></script>
 </body>
 </html>
